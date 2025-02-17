@@ -1,0 +1,10 @@
+asgiref==3.8.1 # ASGI is a standard for Python asynchronous web apps and servers to communicate with each other, and positioned as an asynchronous successor to WSGI.
+dj-database-url==2.3.0 # This is a utility that allows you to utilize the 12factor inspired DATABASE_URL environment variable to configure your Django application.
+Django==4.2.18 # Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+gunicorn==23.0.0 # Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
+packaging==24.2 # Core utilities for Python packages
+psycopg2-binary==2.9.10 # psycopg2 is a PostgreSQL adapter for the Python programming language.
+python-decouple==3.8 # Decouple helps you to organize your settings so that you can change parameters without having to redeploy your app.
+sqlparse==0.5.3 # sqlparse is a non-validating SQL parser for Python.
+typing_extensions==4.12.2 # Backported and Experimental Type Hints for Python
+whitenoise==6.9.0 # This is a production-ready static file server for Django.
