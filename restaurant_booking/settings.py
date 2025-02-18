@@ -33,14 +33,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-y85aa5p^ctc#)h*-l4i*r
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 # Update DEBUG setting to use an environment variable
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+# DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 
 # ALLOWED_HOSTS = []
 # Update ALLOWED_HOSTS setting to use an environment variable
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'coughlans-c39077adf5df.herokuapp.com,localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 
