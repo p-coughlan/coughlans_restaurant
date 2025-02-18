@@ -40,7 +40,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # ALLOWED_HOSTS = []
 # Update ALLOWED_HOSTS setting to use an environment variable
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') # Split the comma-separated string into a list
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'coughlans-c39077adf5df.herokuapp.com,localhost,127.0.0.1').split(',')
+
 
 
 
