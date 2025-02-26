@@ -77,3 +77,10 @@ def check_capacity(new_booking):
             total_reserved += booking.guests
 
     return total_reserved
+
+def booking_success(request, booking_id):
+    """
+    Displays the booking success page with details for the given booking.
+    """
+    booking = get_object_or_404(Booking, id=booking_id)
+    return render(request, 'bookings/booking_success.html', {'booking': booking})
