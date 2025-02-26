@@ -1,0 +1,16 @@
+<!-- reviews/templates/reviews/submit_review.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit a Review</title>
+</head>
+<body>
+    <h1>Submit a Review</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
