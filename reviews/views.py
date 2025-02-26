@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ReviewForm
+from .models import Review
 
 def submit_review(request):
     """
@@ -17,3 +18,10 @@ def submit_review(request):
     else:
         form = ReviewForm()
     return render(request, 'reviews/submit_review.html', {'form': form})
+
+def review_ticker(request):
+    """
+    Retrieves approved reviews and renders the review ticker template.
+    """
+    reviews = Review.objects.filter(approved=True).order_by('-created_at')
+    return render(request, 'reviews/review_ticker.html', {'reviews': reviews})

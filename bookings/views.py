@@ -6,6 +6,13 @@ from .forms import BookingForm
 from .models import Booking
 from datetime import datetime, timedelta
 
+def home(request):
+    """
+    Displays the home page.
+    """
+    return render(request, 'bookings/home.html', {})
+
+
 def book_table(request):
     """
     Displays the booking form and processes form submissions.
