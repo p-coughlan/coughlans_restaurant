@@ -16,23 +16,28 @@ def home(request):
 def book_table(request):
     """
     Displays the booking form and processes form submissions.
-    Uses BookingForm to collect booking details along with customer info.
-    Checks capacity, saves the booking, sends a confirmation email, and redirects to the success page.
+    Checks that the new booking does not exceed capacity.
+    On success, saves the booking, sends a confirmation email, and redirects to a success page.
+    The view first checks if the form was submitted (POST request).
     """
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            # Save the booking instance without committing to perform capacity check
+            # Get an unsaved booking instance from the form (customer linking is done in the form's save method)
             booking = form.save(commit=False)
-            # Example capacity check (customize as needed)
-            if check_capacity(booking) + booking.guests > 40:
+            
+            # Check capacity: suppose allowed capacity is 40 (80% of a 50-seat restaurant)
+            total_reserved = check_capacity(booking)
+            allowed_capacity = 40
+            if total_reserved + booking.guests > allowed_capacity:
                 form.add_error(None, "Cannot accept booking: The requested time slot is nearly full.")
                 return render(request, 'bookings/book_table.html', {'form': form})
             
+            # Save the booking
             booking.save()
             messages.success(request, f"Booking for {booking.date} at {booking.time} confirmed!")
             
-            # Send confirmation email using customer details
+            # Send a confirmation email using customer details from the linked Customer
             send_mail(
                 subject="Your Booking Confirmation",
                 message=(f"Dear {booking.customer.name},\n\n"
