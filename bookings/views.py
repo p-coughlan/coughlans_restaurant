@@ -84,3 +84,43 @@ def booking_success(request, booking_id):
     """
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'bookings/booking_success.html', {'booking': booking})
+
+def manage_booking(request, booking_id):
+    """
+    Allows a customer to update or cancel their booking.
+    
+    The view displays the current booking details and a form pre-populated with
+    booking data. The form includes two buttons: one to update and one to cancel
+    the booking. Based on the 'action' value from the submitted form, the view
+    either updates the booking or deletes it.
+    """
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        if action == 'update':
+            form = BookingForm(request.POST, instance=booking)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Your booking has been updated successfully!")
+                return redirect('booking_success', booking_id=booking.id)
+            else:
+                messages.error(request, "Please correct the errors below.")
+        
+        elif action == 'cancel':
+            booking.delete()
+            messages.success(request, "Your booking has been cancelled.")
+            return redirect('home')
+        
+        else:
+            # If no valid action is specified, re-display the form with an error.
+            form = BookingForm(instance=booking)
+            messages.error(request, "No valid action was selected.")
+    else:
+        form = BookingForm(instance=booking)
+    
+    return render(request, 'bookings/manage_booking.html', {
+        'form': form,
+        'booking': booking
+    })
