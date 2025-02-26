@@ -7,7 +7,7 @@ from .models import Review
 def submit_review(request):
     """
     Allows users to submit a review using the revised ReviewForm.
-    The review is saved (pending admin approval).
+    The review is saved (pending admin approval) and a success message is displayed and the user is redirected to the home page.
     """
     if request.method == 'POST':
         form = ReviewForm(request.POST)
