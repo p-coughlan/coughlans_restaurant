@@ -6,38 +6,37 @@ from .forms import BookingForm
 from .models import Booking
 from datetime import datetime, timedelta
 
+# GROUP FUNCTIONS BY RELATED TASKS
+# The views should be grouped by related tasks: home page, booking form, and booking management.
+
 def home(request):
     """
     Displays the home page.
     """
     return render(request, 'bookings/home.html', {})
 
+# -----------------------------------------------------------------------------
 
 def book_table(request):
     """
     Displays the booking form and processes form submissions.
     Checks that the new booking does not exceed capacity.
-    On success, saves the booking, sends a confirmation email, and redirects to a success page.
-    The view first checks if the form was submitted (POST request).
+    On success, saves the booking, sends a confirmation email, and redirects to the success page.
     """
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            # Get an unsaved booking instance from the form (customer linking is done in the form's save method)
             booking = form.save(commit=False)
-            
-            # Check capacity: suppose allowed capacity is 40 (80% of a 50-seat restaurant)
             total_reserved = check_capacity(booking)
-            allowed_capacity = 40
+            allowed_capacity = 40  # For example, 80% of a 50-seat restaurant
             if total_reserved + booking.guests > allowed_capacity:
                 form.add_error(None, "Cannot accept booking: The requested time slot is nearly full.")
-                return render(request, 'bookings/book_table.html', {'form': form})
-            
-            # Save the booking
+                return render(request, 'bookings/book_table.html', {
+                    'form': form,
+                    'timeslots': available_timeslots()
+                })
             booking.save()
             messages.success(request, f"Booking for {booking.date} at {booking.time} confirmed!")
-            
-            # Send a confirmation email using customer details from the linked Customer
             send_mail(
                 subject="Your Booking Confirmation",
                 message=(f"Dear {booking.customer.name},\n\n"
@@ -51,8 +50,12 @@ def book_table(request):
             return redirect('booking_success', booking_id=booking.id)
     else:
         form = BookingForm()
-
-    return render(request, 'bookings/book_table.html', {'form': form})
+    
+    # Pass available timeslots to the template
+    return render(request, 'bookings/book_table.html', {
+        'form': form,
+        'timeslots': available_timeslots()
+    })
 
 
 def check_capacity(new_booking):
@@ -77,6 +80,22 @@ def check_capacity(new_booking):
             total_reserved += booking.guests
 
     return total_reserved
+
+# Helper function to return a list of available timeslots for demonstration purposes
+# To be replaced with a real-time availability check in a production system
+def available_timeslots():
+    """
+    Returns a list of available timeslots for demonstration purposes.
+    Each timeslot is represented as a dictionary with a 'time' and an 'available' flag.
+    """
+    return [
+        {'time': '18:00', 'available': True},
+        {'time': '18:30', 'available': False},
+        {'time': '19:00', 'available': True},
+        {'time': '19:30', 'available': True},
+        {'time': '20:00', 'available': False},
+    ]
+
 
 def booking_success(request, booking_id):
     """
