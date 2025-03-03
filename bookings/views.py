@@ -5,15 +5,17 @@ from django.core.mail import send_mail
 from .forms import BookingForm
 from .models import Booking
 from datetime import datetime, timedelta
+from reviews.models import Review
 
 # GROUP FUNCTIONS BY RELATED TASKS
 # The views should be grouped by related tasks: home page, booking form, and booking management.
 
 def home(request):
     """
-    Displays the home page.
+    Displays the home page with approved reviews.
     """
-    return render(request, 'bookings/home.html', {})
+    approved_reviews = Review.objects.filter(approved=True).order_by('-created_at')
+    return render(request, 'bookings/home.html', {'approved_reviews': approved_reviews})
 
 # -----------------------------------------------------------------------------
 
