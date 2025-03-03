@@ -2,10 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Coughlan's Restaurant</title>
 </head>
 <body>
     <h1>Welcome to Coughlan's Restaurant</h1>
-    <p>This is the home page.</p>
+    
+    <h2>Approved Reviews</h2>
+    <ul>
+      {% for review in approved_reviews %}
+        <li>
+          <strong>{{ review.customer.name|default:"Anonymous" }}</strong> - "{{ review.comment }}" (Rating: {{ review.rating }})
+        </li>
+      {% empty %}
+        <li>No reviews available.</li>
+      {% endfor %}
+    </ul>
+
+    <nav>
+        <a href="{% url 'book_table' %}">Book a Table</a> |
+        <a href="{% url 'submit_review' %}">Submit a Review</a>
+    </nav>
 </body>
 </html>
