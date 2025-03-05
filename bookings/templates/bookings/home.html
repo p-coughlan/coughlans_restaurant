@@ -1,24 +1,45 @@
-{# bookings/templates/bookings/home.html #}
 {% extends "bookings/base.html" %}
 
 {% block title %}Home - Coughlan's Restaurant{% endblock %}
 
-{% block content %}
-<div class="hero">
-    <h1>Welcome to Coughlan's Restaurant</h1>
-    <p>Your destination for fine dining and exceptional service.</p>
-</div>
+{% block extra_css %}
+<style>
+  /* Hero section styling specifically for the home page */
+  .hero {
+      position: relative;
+      height: 100vh; /* full viewport height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #f8f8f8; /* Off-white text */
+      padding: 0 20px;
+  }
+  .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin-bottom: 20px;
+  }
+  .hero p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+  }
+</style>
+{% endblock %}
 
-<div class="container mt-4">
-    <h2>Approved Reviews</h2>
-    <ul>
-      {% for review in approved_reviews %}
-        <li>
-          <strong>{{ review.customer.name|default:"Anonymous" }}</strong> - "{{ review.comment }}" (Rating: {{ review.rating }})
-        </li>
-      {% empty %}
-        <li>No reviews available.</li>
-      {% endfor %}
-    </ul>
-</div>
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Welcome to Coughlan's</h1>
+  <p>Experience exquisite seasonal menus and a vibrant bar atmosphere.</p>
+  <!-- Sample Menu Buttons (adjust or remove if not needed) -->
+  <div>
+    <a href="{% url 'lunch_menu' %}" class="btn btn-outline-light mx-2">Lunch Menu</a>
+    <a href="{% url 'dinner_menu' %}" class="btn btn-outline-light mx-2">Dinner Menu</a>
+  </div>
+</section>
+
+<!-- Include additional content like a review ticker here if desired -->
 {% endblock %}

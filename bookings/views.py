@@ -8,6 +8,7 @@ from datetime import date, datetime, timedelta
 from reviews.models import Review
 from collections import OrderedDict
 from django.contrib.admin.views.decorators import staff_member_required #
+from django.views.generic import TemplateView 
 
 
 # GROUP FUNCTIONS BY RELATED TASKS
@@ -184,3 +185,18 @@ def weekly_calendar(request):
         'next_week': next_week.strftime("%Y-%m-%d"),
     }
     return render(request, 'bookings/weekly_calendar.html', context)
+
+# -----------------------------------------------------------------------------
+# Lunch and Dinner Menus
+
+class LunchMenuView(TemplateView):
+    """
+    Displays the lunch menu page.
+    """
+    template_name = 'bookings/lunch_menu.html'
+
+class DinnerMenuView(TemplateView):
+    """
+    Displays the dinner menu page.
+    """
+    template_name = 'bookings/dinner_menu.html'
