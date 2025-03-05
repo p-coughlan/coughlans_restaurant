@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Coughlan's Restaurant</title>
-</head>
-<body>
+{# bookings/templates/bookings/home.html #}
+{% extends "bookings/base.html" %}
+
+{% block title %}Home - Coughlan's Restaurant{% endblock %}
+
+{% block content %}
+<div class="hero">
     <h1>Welcome to Coughlan's Restaurant</h1>
-    
+    <p>Your destination for fine dining and exceptional service.</p>
+</div>
+
+<div class="container mt-4">
     <h2>Approved Reviews</h2>
     <ul>
       {% for review in approved_reviews %}
@@ -17,10 +20,5 @@
         <li>No reviews available.</li>
       {% endfor %}
     </ul>
-
-    <nav>
-        <a href="{% url 'book_table' %}">Book a Table</a> |
-        <a href="{% url 'submit_review' %}">Submit a Review</a>
-    </nav>
-</body>
-</html>
+</div>
+{% endblock %}
