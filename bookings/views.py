@@ -4,8 +4,11 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from .forms import BookingForm
 from .models import Booking
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from reviews.models import Review
+from collections import OrderedDict
+from django.contrib.admin.views.decorators import staff_member_required #
+
 
 # GROUP FUNCTIONS BY RELATED TASKS
 # The views should be grouped by related tasks: home page, booking form, and booking management.
@@ -145,3 +148,39 @@ def manage_booking(request, booking_id):
         'form': form,
         'booking': booking
     })
+
+@staff_member_required
+def weekly_calendar(request):
+    """
+    Displays a weekly calendar view of bookings for staff.
+    Determines the starting Monday (via a GET parameter 'week_start', if provided)
+    and collects bookings for each day of the week in an ordered dictionary.
+    Navigation links for previous and next weeks are also provided.
+    """
+    week_start_str = request.GET.get("week_start")
+    if week_start_str:
+        try:
+            week_start = datetime.strptime(week_start_str, "%Y-%m-%d").date()
+        except ValueError:
+            week_start = date.today() - timedelta(days=date.today().weekday())
+    else:
+        week_start = date.today() - timedelta(days=date.today().weekday())
+    
+    # Build an ordered dictionary for 7 days (Monday to Sunday)
+    bookings_by_day = OrderedDict()
+    for i in range(7):
+        current_day = week_start + timedelta(days=i)
+        daily_bookings = Booking.objects.filter(date=current_day).order_by('time')
+        bookings_by_day[current_day] = daily_bookings
+    
+    # Calculate previous and next week start dates for navigation links
+    previous_week = week_start - timedelta(days=7)
+    next_week = week_start + timedelta(days=7)
+    
+    context = {
+        'week_start': week_start,
+        'bookings_by_day': bookings_by_day,
+        'previous_week': previous_week.strftime("%Y-%m-%d"),
+        'next_week': next_week.strftime("%Y-%m-%d"),
+    }
+    return render(request, 'bookings/weekly_calendar.html', context)
