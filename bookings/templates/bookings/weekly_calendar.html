@@ -1,0 +1,33 @@
+<!-- bookings/templates/bookings/weekly_calendar.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Calendar</title>
+</head>
+<body>
+    <h1>Weekly Calendar</h1>
+    <p>Bookings for the week starting on {{ week_start|date:"F j, Y" }}</p>
+
+    {% for day, bookings in bookings_by_day.items %}
+        <h2>{{ day|date:"l, M d" }}</h2>
+        {% if bookings %}
+            <ul>
+                {% for booking in bookings %}
+                    <li>
+                        <strong>{{ booking.customer.name|default:"Anonymous" }}</strong> - 
+                        {{ booking.time|time:"H:i" }} ({{ booking.guests }} guests)
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><em>No bookings for this day.</em></p>
+        {% endif %}
+    {% endfor %}
+
+    <nav>
+        <a href="{% url 'weekly_calendar' %}?week_start={{ previous_week }}">Previous Week</a> |
+        <a href="{% url 'weekly_calendar' %}?week_start={{ next_week }}">Next Week</a>
+    </nav>
+</body>
+</html>
