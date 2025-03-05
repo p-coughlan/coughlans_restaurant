@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Your Booking</title>
-    <!-- CSS/JS links here -->
 </head>
 <body>
     <h1>Manage Your Booking</h1>
     <p>
-        Booking for {{ booking.date }} at {{ booking.time }} by {{ booking.customer.name }} 
-        ({{ booking.guests }} guests)
+      Booking for {{ booking.date }} at {{ booking.time }} by {{ booking.customer.name|default:"Anonymous" }} 
+      ({{ booking.guests }} guests)
     </p>
-    <!-- This form is pre-populated with booking data for updates -->
+    
     <form method="post">
-        <!-- CSRF token for security - this is required for all POST requests -->
         {% csrf_token %}
         {{ form.as_p }}
         <div>
-            <!-- Two buttons with different values to indicate the desired action -->
             <button type="submit" name="action" value="update">Update Booking</button>
             <button type="submit" name="action" value="cancel">Cancel Booking</button>
         </div>
     </form>
+    
+    {% if form.non_field_errors %}
+        <div style="color: red;">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
 </body>
 </html>
