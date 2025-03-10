@@ -2,38 +2,71 @@
 
 {% block title %}Weekly Calendar{% endblock %}
 
-{% block content %}
-<h1>Weekly Calendar</h1>
-<p>Week starting on {{ week_start|date:"F j, Y" }}</p>
+{% block extra_css %}
+<style>
+  /* Calendar container styling similar to form-container but larger */
+  .calendar-container {
+    background: rgba(255, 255, 255, 0.95); /* Nearly opaque white */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 900px;  /* Bigger than the standard form container */
+    margin: 40px auto; /* Centered with vertical spacing */
+  }
+  .calendar-container h1,
+  .calendar-container h2,
+  .calendar-container h3 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+  }
+  .calendar-container h1 {
+    margin-bottom: 30px;
+  }
+  .calendar-container ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .calendar-container ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+  }
+</style>
+{% endblock %}
 
-{% for day_data in days %}
-  <h2>{{ day_data.day|date:"l, M d" }}</h2>
+{% block content %}
+<div class="calendar-container">
+  <h1>Weekly Calendar</h1>
+  <p>Week starting on {{ week_start|date:"F j, Y" }}</p>
   
-  <h3>Bookings:</h3>
-  {% if day_data.bookings %}
+  {% for day_data in days %}
+    <h2>{{ day_data.day|date:"l, M d" }}</h2>
+    
+    <h3>Bookings:</h3>
+    {% if day_data.bookings %}
+      <ul>
+        {% for booking in day_data.bookings %}
+          <li>
+            {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No bookings for this day.</p>
+    {% endif %}
+    
+    <h3>Available Timeslots:</h3>
     <ul>
-      {% for booking in day_data.bookings %}
+      {% for slot in day_data.timeslots %}
         <li>
-          {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+          {{ slot.time }} - {% if slot.available %}Available{% else %}Booked{% endif %}
         </li>
       {% endfor %}
     </ul>
-  {% else %}
-    <p>No bookings for this day.</p>
-  {% endif %}
+  {% endfor %}
   
-  <h3>Available Timeslots:</h3>
-  <ul>
-    {% for slot in day_data.timeslots %}
-      <li>
-         {{ slot.time }} - {% if slot.available %}Available{% else %}Booked{% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-{% endfor %}
-
-<nav>
-    <a href="{% url 'weekly_calendar' %}?week_start={{ previous_week }}">Previous Week</a> |
-    <a href="{% url 'weekly_calendar' %}?week_start={{ next_week }}">Next Week</a>
-</nav>
+  <nav>
+      <a href="{% url 'weekly_calendar' %}?week_start={{ previous_week }}">Previous Week</a> |
+      <a href="{% url 'weekly_calendar' %}?week_start={{ next_week }}">Next Week</a>
+  </nav>
+</div>
 {% endblock %}

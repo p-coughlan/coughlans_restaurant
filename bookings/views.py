@@ -199,11 +199,9 @@ def manage_booking_lookup(request):
 @staff_member_required
 def weekly_calendar(request):
     """
-    Displays a weekly calendar view of bookings along with available timeslots.
-    Only accessible by staff.
-    The view calculates the starting Monday based on a 'week_start' GET parameter (YYYY-MM-DD).
-    For each day, it gathers the bookings and computes fixed timeslots (18:00 to 21:00, 30-minute increments).
-    If a booking exists at a timeslot, that timeslot is marked as booked.
+    Displays a weekly calendar view of bookings for staff.
+    Determines the starting Monday from the 'week_start' GET parameter (YYYY-MM-DD),
+    and collects bookings for each day of the week.
     """
     week_start_str = request.GET.get("week_start")
     if week_start_str:
@@ -213,29 +211,17 @@ def weekly_calendar(request):
             week_start = date.today() - timedelta(days=date.today().weekday())
     else:
         week_start = date.today() - timedelta(days=date.today().weekday())
-
+    
+    # Collect bookings for each day of the week
     days = []
     for i in range(7):
         current_day = week_start + timedelta(days=i)
-        # Get bookings for the current day
         daily_bookings = Booking.objects.filter(date=current_day).order_by('time')
-        # Generate default timeslots for the day
-        timeslots = get_day_timeslots(current_day)
-        # Mark timeslots as booked if a booking's time matches the slot
-        for booking in daily_bookings:
-            booking_time = booking.time.strftime("%H:%M")
-            for slot in timeslots:
-                if slot['time'] == booking_time:
-                    slot['available'] = False
-        days.append({
-            'day': current_day,
-            'bookings': daily_bookings,
-            'timeslots': timeslots,
-        })
-
+        days.append({'day': current_day, 'bookings': daily_bookings})
+    
     previous_week = week_start - timedelta(days=7)
     next_week = week_start + timedelta(days=7)
-
+    
     context = {
         'week_start': week_start,
         'days': days,
