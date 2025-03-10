@@ -1,33 +1,39 @@
-<!-- bookings/templates/bookings/weekly_calendar.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weekly Calendar</title>
-</head>
-<body>
-    <h1>Weekly Calendar</h1>
-    <p>Bookings for the week starting on {{ week_start|date:"F j, Y" }}</p>
+{% extends "bookings/base.html" %}
 
-    {% for day, bookings in bookings_by_day.items %}
-        <h2>{{ day|date:"l, M d" }}</h2>
-        {% if bookings %}
-            <ul>
-                {% for booking in bookings %}
-                    <li>
-                        <strong>{{ booking.customer.name|default:"Anonymous" }}</strong> - 
-                        {{ booking.time|time:"H:i" }} ({{ booking.guests }} guests)
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p><em>No bookings for this day.</em></p>
-        {% endif %}
+{% block title %}Weekly Calendar{% endblock %}
+
+{% block content %}
+<h1>Weekly Calendar</h1>
+<p>Week starting on {{ week_start|date:"F j, Y" }}</p>
+
+{% for day_data in days %}
+  <h2>{{ day_data.day|date:"l, M d" }}</h2>
+  
+  <h3>Bookings:</h3>
+  {% if day_data.bookings %}
+    <ul>
+      {% for booking in day_data.bookings %}
+        <li>
+          {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No bookings for this day.</p>
+  {% endif %}
+  
+  <h3>Available Timeslots:</h3>
+  <ul>
+    {% for slot in day_data.timeslots %}
+      <li>
+         {{ slot.time }} - {% if slot.available %}Available{% else %}Booked{% endif %}
+      </li>
     {% endfor %}
+  </ul>
+{% endfor %}
 
-    <nav>
-        <a href="{% url 'weekly_calendar' %}?week_start={{ previous_week }}">Previous Week</a> |
-        <a href="{% url 'weekly_calendar' %}?week_start={{ next_week }}">Next Week</a>
-    </nav>
-</body>
-</html>
+<nav>
+    <a href="{% url 'weekly_calendar' %}?week_start={{ previous_week }}">Previous Week</a> |
+    <a href="{% url 'weekly_calendar' %}?week_start={{ next_week }}">Next Week</a>
+</nav>
+{% endblock %}
