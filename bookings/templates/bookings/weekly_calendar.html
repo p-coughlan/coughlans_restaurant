@@ -47,21 +47,14 @@
         {% for booking in day_data.bookings %}
           <li>
             {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+            <!-- Link to manage (update/cancel) the booking -->
+            <a href="{% url 'manage_booking' booking.id %}">Manage</a>
           </li>
         {% endfor %}
       </ul>
     {% else %}
       <p>No bookings for this day.</p>
     {% endif %}
-    
-    <h3>Available Timeslots:</h3>
-    <ul>
-      {% for slot in day_data.timeslots %}
-        <li>
-          {{ slot.time }} - {% if slot.available %}Available{% else %}Booked{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
   {% endfor %}
   
   <nav>
