@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.mail import send_mail
-from .forms import BookingForm
+from .forms import BookingForm, AdminBookingForm
 from .models import Booking
 from datetime import date, datetime, timedelta, time
 from reviews.models import Review
@@ -139,12 +139,8 @@ def booking_success(request, booking_id):
 
 def manage_booking(request, booking_id):
     """
-    Allows a customer to update or cancel their booking.
-    
-    The view displays the current booking details and a form pre-populated with
-    booking data. The form includes two buttons: one to update and one to cancel
-    the booking. Based on the 'action' value from the submitted form, the view
-    either updates the booking or deletes it.
+    Allows a staff member to update or cancel a booking.
+    Uses AdminBookingForm to update the booking (excluding customer details).
     """
     booking = get_object_or_404(Booking, id=booking_id)
     
@@ -152,25 +148,22 @@ def manage_booking(request, booking_id):
         action = request.POST.get('action')
         
         if action == 'update':
-            form = BookingForm(request.POST, instance=booking)
+            form = AdminBookingForm(request.POST, instance=booking)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Your booking has been updated successfully!")
+                messages.success(request, "The booking has been updated successfully!")
                 return redirect('booking_success', booking_id=booking.id)
             else:
                 messages.error(request, "Please correct the errors below.")
-        
         elif action == 'cancel':
             booking.delete()
-            messages.success(request, "Your booking has been cancelled.")
+            messages.success(request, "The booking has been cancelled.")
             return redirect('home')
-        
         else:
-            # If no valid action is specified, re-display the form with an error.
-            form = BookingForm(instance=booking)
-            messages.error(request, "No valid action was selected.")
+            form = AdminBookingForm(instance=booking)
+            messages.error(request, "Invalid action selected.")
     else:
-        form = BookingForm(instance=booking)
+        form = AdminBookingForm(instance=booking)
     
     return render(request, 'bookings/manage_booking.html', {
         'form': form,

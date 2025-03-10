@@ -44,3 +44,18 @@ class BookingForm(forms.ModelForm):
         if commit:
             booking.save()
         return booking
+
+class AdminBookingForm(forms.ModelForm):
+    """
+    Form for admin/staff to update a booking.
+    Excludes customer details (name, email, phone) so that staff can quickly modify
+    the booking (e.g., change the number of guests or reschedule) without re-entering
+    customer information.
+    """
+    class Meta:
+        model = Booking
+        fields = ['date', 'time', 'guests']
+        help_texts = {
+            'date': 'Enter the booking date in dd-mm-yyyy format (e.g. 05-08-2025).',
+            'time': 'Enter the booking time in HH:MM format (e.g. 18:00).',
+        }
