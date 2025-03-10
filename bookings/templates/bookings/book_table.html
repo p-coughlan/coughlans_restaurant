@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book a Table</title>
-</head>
-<body>
-    <h1>Book a Table</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit Booking</button>
-    </form>
-    {% if form.non_field_errors %}
-        <div style="color: red;">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-</body>
-</html>
+<!--The template now extends the base.html, so it inherits the common header, navbar, footer, and global styles. -->
+<!--The title block is overridden to display "Book a Table" in the browser tab. -->
+<!--The content block contains a form for booking a table. -->
+<!--The form is displayed using the as_p method, which renders each form field as a paragraph element. -->
+<!--The form includes a CSRF token for security. -->
+<!--If there are any non-field errors (e.g., form validation errors), they are displayed in red text. -->
+<!--The form-container class is used for styling the form. -->
+<!--The form is submitted via a POST request. -->
+{% extends "bookings/base.html" %}
+
+{% block title %}Book a Table{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Book a Table</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit Booking</button>
+  </form>
+  {% if form.non_field_errors %}
+    <div style="color: red;">
+      {{ form.non_field_errors }}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

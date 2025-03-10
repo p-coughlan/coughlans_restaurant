@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Manage Your Booking</title>
-</head>
-<body>
-    <h1>Manage Your Booking</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="booking_id">Enter Booking ID:</label>
-        <input type="text" name="booking_id" id="booking_id" required>
-        <button type="submit">Go</button>
-    </form>
-    <a href="{% url 'home' %}">Back to Home</a>
-</body>
-</html>
+<!-- This template is used to display the form for the user to enter their booking ID to manage their booking -->
+<!-- The template extends the base.html template to inherit the common header, navbar, footer, and global styles. -->
+<!-- The title block is overridden to display "Manage Your Booking Lookup" in the browser tab. -->
+<!-- The content block contains a form for the user to enter their booking ID. -->
+<!-- The form is displayed using the as_p method, which renders each form field as a paragraph element. -->
+<!-- The form includes a CSRF token for security. -->
+<!-- The form-container class is used for styling the form. -->
+<!-- The form is submitted via a POST request. -->
+<!-- The form includes a button to submit the booking ID. -->
+<!-- The form action is determined by the value of the action button (update or cancel). -->
+<!-- The booking details are displayed using template variables like booking.date, booking.time, booking.customer.name, booking.guests, etc. -->
+{% extends "bookings/base.html" %}
+
+{% block title %}Manage Your Booking Lookup{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Manage Your Booking</h1>
+  <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+          <label for="booking_id">Enter Booking ID:</label>
+          <input type="text" name="booking_id" id="booking_id" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Find Booking</button>
+  </form>
+</div>
+{% endblock %}
