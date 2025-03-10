@@ -7,7 +7,7 @@ from .models import Booking
 from datetime import date, datetime, timedelta
 from reviews.models import Review
 from collections import OrderedDict
-from django.contrib.admin.views.decorators import staff_member_required #
+from django.contrib.admin.views.decorators import staff_member_required 
 from django.views.generic import TemplateView 
 
 
@@ -22,6 +22,7 @@ def home(request):
     return render(request, 'bookings/home.html', {'approved_reviews': approved_reviews})
 
 # -----------------------------------------------------------------------------
+# Booking Form
 
 def book_table(request):
     """
@@ -63,6 +64,8 @@ def book_table(request):
         'timeslots': available_timeslots()
     })
 
+# -----------------------------------------------------------------------------
+# Capacity Check
 
 def check_capacity(new_booking):
     """
@@ -87,6 +90,9 @@ def check_capacity(new_booking):
 
     return total_reserved
 
+# -----------------------------------------------------------------------------
+# Helper Functions
+
 # Helper function to return a list of available timeslots for demonstration purposes
 # To be replaced with a real-time availability check in a production system
 def available_timeslots():
@@ -102,6 +108,8 @@ def available_timeslots():
         {'time': '20:00', 'available': False},
     ]
 
+# -----------------------------------------------------------------------------
+# Booking Success and Management
 
 def booking_success(request, booking_id):
     """
@@ -149,6 +157,25 @@ def manage_booking(request, booking_id):
         'form': form,
         'booking': booking
     })
+
+# -----------------------------------------------------------------------------
+# Booking Lookup
+
+def manage_booking_lookup(request):
+    """
+    Displays a simple form where a user can enter their booking ID to manage (update or cancel) their booking.
+    Upon submission, the user is redirected to the manage_booking view for that booking.
+    """
+    if request.method == "POST":
+        booking_id = request.POST.get("booking_id")
+        if booking_id:
+            return redirect('manage_booking', booking_id=booking_id)
+        else:
+            messages.error(request, "Please enter a valid booking ID.")
+    return render(request, 'bookings/manage_booking_lookup.html')
+
+# -----------------------------------------------------------------------------
+# Staff-Only Views
 
 @staff_member_required
 def weekly_calendar(request):
