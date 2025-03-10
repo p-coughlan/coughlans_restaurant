@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Booking Success</title>
-</head>
-<body>
-    <h1>Booking Confirmed!</h1>
-    <p>Your booking for {{ booking.date }} at {{ booking.time }} has been confirmed.</p>
-    <p>Thank you, {{ booking.customer.name }}!</p>
-</body>
-</html>
+{% extends "bookings/base.html" %}
+
+{% block title %}Booking Success{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Booking Confirmed!</h1>
+  <p>Your booking for {{ booking.date }} at {{ booking.time }} has been confirmed.</p>
+  <p>Thank you, {{ booking.customer.name|default:"Valued Customer" }}!</p>
+  <a href="{% url 'home' %}" class="btn btn-primary">Return Home</a>
+</div>
+{% endblock %}
