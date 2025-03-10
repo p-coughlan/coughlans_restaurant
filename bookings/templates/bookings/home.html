@@ -41,5 +41,6 @@
   </div>
 </section>
 
-<!-- Include additional content like a review ticker here if desired -->
+<!-- Review ticker at the bottom -->
+{% include "reviews/review_ticker.html" with reviews=approved_reviews %}
 {% endblock %}

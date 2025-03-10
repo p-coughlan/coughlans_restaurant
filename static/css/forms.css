@@ -1,0 +1,51 @@
+/* static/css/forms.css */
+
+/* Container for forms to give a unified, elegant appearance */
+.form-container {
+    background: rgba(255, 255, 255, 0.9);  /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 40px auto;  /* Center horizontally and add vertical spacing */
+  }
+  
+  /* Headings within form containers */
+  .form-container h1 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Labels for form fields */
+  .form-group label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Styling for form controls */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Style for the submit button */
+  button[type="submit"] {
+    background-color: #556B2F;  /* Olive green */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #445F24;
+  }
+  

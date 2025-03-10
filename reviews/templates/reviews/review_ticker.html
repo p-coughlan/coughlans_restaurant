@@ -1,8 +1,28 @@
 <!-- reviews/templates/reviews/review_ticker.html -->
 <!-- This template loops through the passed-in reviews and creates a container for each review. The JavaScript (in review_ticker.js) will handle showing and hiding these items. -->
-<div id="review-ticker" class="review-ticker">
+<!-- reviews/templates/reviews/review_ticker.html -->
+<style>
+    /* Style for the review ticker container */
+    .review-ticker {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        color: #f8f8f8; /* Off white text */
+        padding: 20px;
+        /* Additional styling if needed */
+    }
+    /* Ensure all review items are initially hidden */
+    .review-item {
+        display: none;
+    }
+    /* Show the first review item */
+    .review-item:first-child {
+        display: block;
+    }
+  </style>
+  
+  <div id="review-ticker" class="review-ticker">
     {% for review in reviews %}
-      <div class="review-item" style="display: none;">
+      <div class="review-item">
         <span>"{{ review.comment }}" - {{ review.customer.name|default:"Anonymous" }}</span>
       </div>
     {% endfor %}
