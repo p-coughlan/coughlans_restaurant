@@ -108,6 +108,25 @@ def available_timeslots():
         {'time': '20:00', 'available': False},
     ]
 
+def get_day_timeslots(day):
+    """
+    For a given day (a date object), return a list of timeslots with their availability.
+    Timeslots are generated in 30-minute increments from 18:00 to 21:00.
+    Returns:
+        A list of dictionaries with keys: 'time' (as a string) and 'available' (bool).
+    """
+    timeslot_list = []
+    start_time = time(18, 0)  # Start at 18:00
+    end_time = time(21, 0)    # End at 21:00
+    current_datetime = datetime.combine(day, start_time)
+    end_datetime = datetime.combine(day, end_time)
+    
+    while current_datetime <= end_datetime:
+        timeslot_str = current_datetime.strftime("%H:%M")
+        timeslot_list.append({'time': timeslot_str, 'available': True})
+        current_datetime += timedelta(minutes=30)
+    return timeslot_list
+
 # -----------------------------------------------------------------------------
 # Booking Success and Management
 
