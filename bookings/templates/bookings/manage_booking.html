@@ -14,51 +14,29 @@
 
 {% block title %}Manage Your Booking{% endblock %}
 
-{% block extra_css %}
-<style>
-  /* Custom styling for individual form fields */
-  .form-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-  }
-  .form-group label {
-      width: 30%;
-      margin-right: 10px;
-      font-weight: bold;
-  }
-  .form-group .form-control {
-      flex: 1;
-  }
-  /* Help text styling */
-  .help-text {
-      color: #999;
-      font-size: 0.9rem;
-      margin-top: 5px;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
 <div class="form-container">
   <h1>Manage Your Booking</h1>
-  
-  {# Inline messages display specific to this page #}
-  {% if messages %}
-    <div class="help-text" style="margin-bottom: 15px;">
-      {% for message in messages %}
-        <p style="color: green;">{{ message }}</p>
-      {% endfor %}
-    </div>
-  {% endif %}
-  
   <p>
-    Booking for {{ booking.date }} at {{ booking.time }} by {{ booking.customer.name|default:"Anonymous" }} 
+    Booking for {{ booking.date }} at {{ booking.time }} by {{ booking.customer.name|default:"Anonymous" }}
     ({{ booking.guests }} guests)
   </p>
   <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      {% for field in form %}
+        <div class="form-group">
+          <div class="label-help">
+            {{ field.label_tag }}
+            {% if field.help_text %}
+              <span class="help-inline">{{ field.help_text }}</span>
+            {% endif %}
+          </div>
+          {{ field }}
+          {% if field.errors %}
+            <div class="text-danger">{{ field.errors }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
       <div>
           <button type="submit" name="action" value="update" class="btn btn-primary">Update Booking</button>
           <button type="submit" name="action" value="cancel" class="btn btn-danger">Cancel Booking</button>
@@ -66,4 +44,5 @@
   </form>
 </div>
 {% endblock %}
+
 

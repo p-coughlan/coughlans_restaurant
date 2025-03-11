@@ -5,9 +5,9 @@
   background: rgba(255, 255, 255, 0.9);  /* Semi-transparent white background */
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: 40px auto;  /* Center horizontally and add vertical spacing */
+  margin: 40px auto;  /* Center horizontally with vertical spacing */
 }
 
 /* Headings within form containers */
@@ -17,36 +17,32 @@
   margin-bottom: 20px;
 }
 
-/* Form group: display label and input on one line */
+/* Form group: vertical layout */
 .form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-/* Labels: fixed width and styling */
+/* Labels placed above inputs */
 .form-group label {
-  width: 30%; /* Adjust this percentage if needed */
-  margin-right: 10px;
+  display: block;
   font-weight: bold;
   color: #333;
+  margin-bottom: 5px;
 }
 
 /* Styling for form controls */
 .form-control {
-  flex: 1;  /* Input takes remaining space */
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 15px; /* Optional: if you want additional spacing */
 }
 
-/* Help text styling for form fields */
+/* Help text styling (displayed below form controls) */
 .help-text {
   color: #999;
   font-size: 0.9rem;
   margin-top: 5px;
-  margin-bottom: 10px;
 }
 
 /* Style for the submit button */
@@ -58,10 +54,46 @@ button[type="submit"] {
   padding: 12px;
   font-size: 1.1rem;
   font-weight: bold;
-  width: 100%;
+  width: 100%;       /* Full width of container */
   cursor: pointer;
+  text-align: center; /* Ensure button text is centered */
 }
 
-button[type="submit"]:hover {
-  background-color: #445F24;
+/* Custom styling for fields in the manage booking form */
+
+/* Container for form groups remains the same */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* New container to display label and help text on the same line */
+.label-help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Help text styling to appear inline with the label */
+.help-inline {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+/* Ensure form controls remain full-width */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input {
+  width: 100%;
+}
+textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
