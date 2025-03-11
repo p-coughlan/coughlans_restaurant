@@ -193,24 +193,31 @@ def manage_booking(request, booking_id):
 def manage_booking_lookup_by_email(request):
     """
     Displays a form for users to look up bookings by a customer's email address.
-    If one booking is found, redirect to the manage booking page.
-    If multiple bookings are found, display a list for the user to choose from.
+    If one booking is found, redirects to the manage booking page.
+    If multiple bookings are found, displays a list for the user to choose from.
+    If no bookings are found, an error message is included in the context.
     """
     bookings_found = None
+    error_message = None
+    
     if request.method == "POST":
         email = request.POST.get("email", "").strip()
-        print("Email received:", email)  # Debug print
         if email:
             bookings_found = Booking.objects.filter(customer__email__iexact=email)
-            print("Bookings found:", bookings_found.count())  # Debug print
             if not bookings_found.exists():
-                messages.error(request, "No bookings found for that email address.")
+                error_message = "No bookings found for that email address."
             elif bookings_found.count() == 1:
                 booking = bookings_found.first()
                 return redirect('manage_booking', booking_id=booking.id)
         else:
-            messages.error(request, "Please enter an email address.")
-    return render(request, 'bookings/manage_booking_lookup.html', {'bookings_found': bookings_found})
+            error_message = "Please enter an email address."
+    
+    context = {
+        'bookings_found': bookings_found,
+        'error_message': error_message
+    }
+    return render(request, 'bookings/manage_booking_lookup.html', context)
+
 
 
 # -----------------------------------------------------------------------------
