@@ -6,16 +6,17 @@
 <style>
   /* Hero section styling specifically for the home page */
   .hero {
-      position: relative;
-      height: 100vh; /* full viewport height */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #f8f8f8; /* Off-white text */
-      padding: 0 20px;
-  }
+    position: relative; /* Ensure it's in the normal flow */
+    min-height: 50vh;   /* Use a minimum height rather than a fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: #f8f8f8; /* Off-white text */
+    padding-top: 20vh; /* Push content down 20% of viewport height */
+    margin-bottom: 20px; /* Ensure a gap below the hero section */
+}
   .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 4rem;
@@ -25,6 +26,13 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       margin-bottom: 30px;
+  }
+
+  /* Create a gap before the review ticker so it’s visible immediately */
+  .review-ticker-wrapper {
+      margin-top: 20px; /* Adjust gap as needed */
+      position: relative; /* Ensure it stays in normal flow */
+      z-index: 1;         /* Lower than the hero if needed */
   }
 </style>
 {% endblock %}
@@ -41,6 +49,8 @@
   </div>
 </section>
 
-<!-- Review ticker at the bottom -->
-{% include "reviews/review_ticker.html" with reviews=approved_reviews %}
+<!-- Review Ticker Wrapper -->
+<div class="review-ticker-wrapper">
+  {% include "reviews/review_ticker.html" with reviews=approved_reviews %}
+</div>
 {% endblock %}
