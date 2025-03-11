@@ -139,8 +139,8 @@ def booking_success(request, booking_id):
 
 def manage_booking(request, booking_id):
     """
-    Allows a staff member to update or cancel a booking.
-    Uses AdminBookingForm to update the booking (excluding customer details).
+    Allows a user to update or cancel their booking.
+    Uses AdminBookingForm for updating.
     """
     booking = get_object_or_404(Booking, id=booking_id)
     
@@ -151,14 +151,15 @@ def manage_booking(request, booking_id):
             form = AdminBookingForm(request.POST, instance=booking)
             if form.is_valid():
                 form.save()
-                messages.success(request, "The booking has been updated successfully!")
+                messages.success(request, "Your booking has been updated successfully!")
                 return redirect('booking_success', booking_id=booking.id)
             else:
                 messages.error(request, "Please correct the errors below.")
+                
         elif action == 'cancel':
             booking.delete()
-            messages.success(request, "The booking has been cancelled.")
-            return redirect('home')
+            # Render the cancellation success template instead of using a Django message
+            return render(request, 'bookings/cancel_success.html')
         else:
             form = AdminBookingForm(instance=booking)
             messages.error(request, "Invalid action selected.")
@@ -169,6 +170,7 @@ def manage_booking(request, booking_id):
         'form': form,
         'booking': booking
     })
+
 
 # -----------------------------------------------------------------------------
 # Booking Lookup
