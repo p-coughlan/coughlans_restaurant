@@ -16,12 +16,13 @@
   <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Submit Booking</button>
+      <button type="submit" class="btn btn-primary">Submit Booking</button>
   </form>
   {% if form.non_field_errors %}
-    <div style="color: red;">
+    <div class="help-text" style="color: red;">
       {{ form.non_field_errors }}
     </div>
   {% endif %}
 </div>
 {% endblock %}
+
