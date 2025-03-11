@@ -186,6 +186,33 @@ def manage_booking_lookup(request):
             messages.error(request, "Please enter a valid booking ID.")
     return render(request, 'bookings/manage_booking_lookup.html')
 
+# ALTERNATE LOOKUP FUNCTION
+# Instead of using an ID, the user can enter their email address and then query the database for bookings associated with that email address.
+# This approach is more user-friendly and can be implemented as follows:
+
+def manage_booking_lookup_by_email(request):
+    """
+    Displays a form for users to look up bookings by a customer's email address.
+    If one booking is found, redirect to the manage booking page.
+    If multiple bookings are found, display a list for the staff to choose from.
+    """
+    bookings_found = None
+    if request.method == "POST":
+        email = request.POST.get("email")
+        if email:
+            # Filter bookings where the associated customer's email matches (case-insensitive)
+            bookings_found = Booking.objects.filter(customer__email__iexact=email)
+            if not bookings_found.exists():
+                messages.error(request, "No bookings found for that email address.")
+            elif bookings_found.count() == 1:
+                # If exactly one booking is found, redirect directly to the manage booking page
+                booking = bookings_found.first()
+                return redirect('manage_booking', booking_id=booking.id)
+        else:
+            messages.error(request, "Please enter an email address.")
+    
+    return render(request, 'bookings/manage_booking_lookup.html', {'bookings_found': bookings_found})
+
 # -----------------------------------------------------------------------------
 # Staff-Only Views
 
