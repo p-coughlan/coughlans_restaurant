@@ -10,6 +10,7 @@ urlpatterns = [
     path('weekly-calendar/', views.weekly_calendar, name='weekly_calendar'),
     path('lunch-menu/', views.LunchMenuView.as_view(), name='lunch_menu'),
     path('dinner-menu/', views.DinnerMenuView.as_view(), name='dinner_menu'),
-    path('manage-booking-lookup/', views.manage_booking_lookup, name='manage_booking_lookup'),
-    # Add more booking-related URL patterns as needed below...
+    # Path below surpluses the current requirements
+    # path('manage-booking-lookup/', views.manage_booking_lookup, name='manage_booking_lookup'),
+    path('manage-booking-lookup/', views.manage_booking_lookup_by_email, name='manage_booking_lookup_by_email'),
 ]
