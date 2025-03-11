@@ -34,6 +34,19 @@
       position: relative; /* Ensure it stays in normal flow */
       z-index: 1;         /* Lower than the hero if needed */
   }
+
+  /* media query for smaller screens */
+  @media (max-width: 768px) {
+      .hero h1 {
+          font-size: 3rem;
+      }
+      .hero p {
+          font-size: 1.25rem;
+      }
+      .hero {
+          padding-top: 5vh;
+      }
+  }
 </style>
 {% endblock %}
 
