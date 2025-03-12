@@ -1,0 +1,37 @@
+/* static/css/rating.css */
+
+/* Container for the rating widget */
+.rating {
+    direction: rtl;               /* Reverse the order of the radio buttons */
+    unicode-bidi: bidi-override;   /* Ensure proper bidirectional behavior */
+    font-size: 2rem;              /* Adjust star size as needed */
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide the native radio inputs */
+.rating input {
+    display: none;
+}
+
+/* Style the labels to show stars */
+.rating label {
+    cursor: pointer;
+    color: #ccc;                  /* Grey for unselected stars */
+    margin: 0 2px;
+}
+
+/* Use the :before pseudo-element to display a star */
+.rating label:before {
+    content: "\2605";             /* Unicode star (★) */
+}
+
+/* When a radio input is checked, or when hovering over a label,
+   color that label and all labels to its right (visually to the left in RTL) */
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffca08;               /* Gold color for selected/hovered stars */
+}

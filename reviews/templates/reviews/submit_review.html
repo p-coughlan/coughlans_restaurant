@@ -8,6 +8,11 @@
 <!-- The form-container class is used for styling the form. -->
 <!-- The form is submitted via a POST request. -->
 {% extends "bookings/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
 
 {% block title %}Submit a Review{% endblock %}
 

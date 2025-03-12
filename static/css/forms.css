@@ -97,3 +97,52 @@ textarea {
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/*-----------------------------------------------------------------------------------*/
+/* static/css/rating.css */
+
+/* Container for the rating widget, using RTL so stars fill from left to right */
+.radiolist.rating {
+  display: flex;
+  justify-content: space-around;
+  direction: rtl;               /* Reverse visual order */
+  unicode-bidi: bidi-override;   /* Ensure proper reversal */
+  font-size: 2rem;              /* Adjust star size */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hide the native radio inputs */
+.radiolist.rating input {
+  display: none;
+}
+
+/* Style the labels to show stars */
+.radiolist.rating label {
+  cursor: pointer;
+  color: #ccc;                  /* Grey for unselected stars */
+  margin: 0 2px;
+  display: inline-block;
+}
+
+/* Use a pseudo-element to display a star */
+.radiolist.rating label:before {
+  content: "\2605";             /* Unicode star (★) */
+}
+
+/* 
+ When a label has a checked input, or any label following it in the DOM,
+ color those stars gold. This uses the :has() pseudo-class.
+ Note: The :has() selector is supported in recent versions of Chrome, Edge, and Safari.
+*/
+.radiolist.rating label:has(input:checked),
+.radiolist.rating label:has(input:checked) ~ label {
+  color: #ffca08;
+}
+
+
+.helptext {
+  /* grey text */
+  color: #999;
+}

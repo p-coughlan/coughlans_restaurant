@@ -44,7 +44,8 @@ def book_table(request):
                     'timeslots': available_timeslots()
                 })
             booking.save()
-            messages.success(request, f"Booking for {booking.date} at {booking.time} confirmed!")
+            # Comment out the Django message for now
+            # messages.success(request, f"Booking for {booking.date} at {booking.time} confirmed!")
             send_mail(
                 subject="Your Booking Confirmation",
                 message=(f"Dear {booking.customer.name},\n\n"
@@ -152,7 +153,8 @@ def manage_booking(request, booking_id):
             form = AdminBookingForm(request.POST, instance=booking)
             if form.is_valid():
                 form.save()
-                messages.success(request, "Your booking has been updated successfully!")
+                # Comment out the Django message for now
+                # messages.success(request, "Your booking has been updated successfully!")
                 return redirect('booking_success', booking_id=booking.id)
             else:
                 messages.error(request, "Please correct the errors below.")

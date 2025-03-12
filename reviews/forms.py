@@ -1,26 +1,41 @@
-# reviews/forms.py
-
 from django import forms
 from .models import Review
-from bookings.models import Customer  # Import Customer from bookings app
+from bookings.models import Customer  # Ensure the Customer model is imported
 
 class ReviewForm(forms.ModelForm):
     """
-    Form for submitting a review. Optionally links a review to a Customer.
+    Form for submitting a review.
+    
+    This form collects the review's comment and a rating using a star-based input.
+    Additional customer details are optional and used to link the review to a Customer.
     """
-    customer_name = forms.CharField(max_length=100, label="Your Name", required=False)
-    customer_email = forms.EmailField(label="Your Email", required=False)
-    customer_phone = forms.CharField(max_length=15, label="Your Phone", required=False)
+    customer_name = forms.CharField(max_length=100, label="Your Name", required=False,
+                                    help_text="Optional. Enter your name.")
+    customer_email = forms.EmailField(label="Your Email", required=False,
+                                      help_text="Optional. Enter your email address.")
+    customer_phone = forms.CharField(max_length=15, label="Your Phone", required=False,
+                                     help_text="Optional. Enter your phone number.")
     
     class Meta:
         model = Review
-        # Only review-specific fields are included here.
         fields = ['comment', 'rating']
         widgets = {
-            'comment': forms.Textarea(attrs={'rows': 4}),
-            'rating': forms.NumberInput(attrs={'min': 1, 'max': 5}),
+            'comment': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
+            'rating': forms.RadioSelect(
+                choices=[(i, str(i)) for i in range(1, 6)],
+                attrs={'class': 'radiolist rating'}  # Add both classes
+            ),
         }
-
+        help_texts = {
+            'comment': "Write your review here.",
+            'rating': "Select a rating from 1 (lowest) to 5 (highest).",
+        }
+    
+    def __init__(self, *args, **kwargs):
+        """Initialize the form and set the default rating to 5."""
+        super().__init__(*args, **kwargs)
+        self.fields['rating'].initial = 5
+    
     def save(self, commit=True):
         review = super().save(commit=False)
         email = self.cleaned_data.get('customer_email')
