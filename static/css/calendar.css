@@ -2,8 +2,8 @@
 
 /* Calendar container styling */
 .calendar-container {
-    background: #2e4b2e; /* Dark olive green background */
-    color: #f8f8f8;      /* Off-white text */
+    background: #e7e7e7; /* Light gray background */
+    color: #1b1e21;      /* Dark gray text */
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
@@ -20,8 +20,8 @@
     margin-bottom: 10px;
 }
 .calendar-container p {
-    font-weight: bold;
-    text-align: center;
+    font-weight: normal;
+    text-align: left;
     margin-bottom: 20px;
 }
 .calendar-container h2 {
@@ -50,10 +50,11 @@
 .calendar-nav {
     text-align: center;
     margin-top: 20px;
+    color:#1b1e21;
 }
 .calendar-nav a {
     margin: 0 10px;
-    color: #f8f8f8;
+    color: #1b1e21;
     text-decoration: none;
 }
 .calendar-nav a:hover {

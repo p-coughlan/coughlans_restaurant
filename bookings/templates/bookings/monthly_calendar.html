@@ -1,0 +1,52 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block title %}Monthly Bookings{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="calendar-container">
+  <h1>Monthly Bookings</h1>
+  <p><strong>{{ month }}/{{ year }}</strong></p>
+  
+  <table class="calendar-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Bookings</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for day_obj in days %}
+      <tr>
+        <td>{{ day_obj.date|date:"M d" }}</td>
+        <td>
+          {% if day_obj.bookings %}
+            <ul>
+              {% for booking in day_obj.bookings %}
+                <li>
+                  {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+                  <a href="{% url 'manage_booking' booking.id %}" class="manage-link">Manage</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            No bookings
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <nav class="calendar-nav">
+      <a href="{% url 'monthly_calendar' %}?month={{ month|add:"-1" }}&year={{ year }}">Previous Month</a> |
+      <a href="{% url 'monthly_calendar' %}?month={{ month|add:"1" }}&year={{ year }}">Next Month</a> |
+      <a href="{% url 'daily_calendar' %}">Switch to Daily View</a> |
+      <a href="{% url 'weekly_calendar' %}">Switch to Weekly View</a>
+  </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block title %}Daily Bookings{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="calendar-container">
+  <h1>Daily Bookings</h1>
+  <p><strong>{{ day|date:"F j, Y" }}</strong></p>
+  
+  {% if bookings %}
+    <ul>
+      {% for booking in bookings %}
+        <li>
+          {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
+          <a href="{% url 'manage_booking' booking.id %}" class="manage-link">Manage</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No bookings for today.</p>
+  {% endif %}
+  
+  <nav class="calendar-nav">
+      <a href="{% url 'daily_calendar' %}?day={{ day|date:"Y-m-d"|add:"-1 day" }}">Previous Day</a> |
+      <a href="{% url 'daily_calendar' %}?day={{ day|date:"Y-m-d"|add:"1 day" }}">Next Day</a> |
+      <a href="{% url 'weekly_calendar' %}">Switch to Weekly View</a> |
+      <a href="{% url 'monthly_calendar' %}?month={{ day|date:"m" }}&year={{ day|date:"Y" }}">Switch to Monthly View</a>
+  </nav>
+</div>
+{% endblock %}

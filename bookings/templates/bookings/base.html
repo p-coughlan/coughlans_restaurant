@@ -116,10 +116,11 @@
           </li>
           <!-- Link to weekly calendar only accessible to staff -->
           {% if request.user.is_authenticated and request.user.is_staff %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'weekly_calendar' %}">Calendar</a>
-          </li>
-        {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'daily_calendar' %}">Calendar</a>
+            </li>
+          {% endif %}
+
         
           <li class="nav-item">
             <a class="nav-link" href="{% url 'submit_review' %}">Leave a Review</a>
