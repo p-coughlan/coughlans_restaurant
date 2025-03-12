@@ -1,54 +1,77 @@
 {% extends "bookings/base.html" %}
 
-{% block title %}Weekly Calendar{% endblock %}
+{% block title %}Weekly Bookings{% endblock %}
 
 {% block extra_css %}
 <style>
-  /* Calendar container styling similar to form-container but larger */
   .calendar-container {
-    background: rgba(255, 255, 255, 0.95); /* Nearly opaque white */
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    max-width: 900px;  /* Bigger than the standard form container */
-    margin: 40px auto; /* Centered with vertical spacing */
-  }
-  .calendar-container h1,
-  .calendar-container h2,
-  .calendar-container h3 {
-    font-family: 'Playfair Display', serif;
-    text-align: center;
+      background: #2e4b2e; /* Dark olive green background */
+      color: #f8f8f8;      /* Off-white text */
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      max-width: 800px;
+      margin: 20px auto;
   }
   .calendar-container h1 {
-    margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 10px;
+      text-align: center;
+      font-family: sans-serif;
+  }
+  .calendar-container p {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: sans-serif;
+  }
+  .calendar-container h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      font-family: sans-serif;
   }
   .calendar-container ul {
-    list-style: none;
-    padding-left: 0;
+      list-style: none;
+      padding-left: 0;
   }
   .calendar-container ul li {
-    padding: 8px 0;
-    border-bottom: 1px solid #ccc;
+      padding: 5px 0;
+      border-bottom: 1px solid #ccc;
+      font-family: sans-serif;
+  }
+  nav {
+      text-align: center;
+      margin-top: 20px;
+  }
+  nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #f8f8f8;
+      font-family: sans-serif;
+  }
+  nav a:hover {
+      text-decoration: underline;
   }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="calendar-container">
-  <h1>Weekly Calendar</h1>
+  <h1>Weekly Bookings</h1>
   <p>Week starting on {{ week_start|date:"F j, Y" }}</p>
   
   {% for day_data in days %}
     <h2>{{ day_data.day|date:"l, M d" }}</h2>
     
-    <h3>Bookings:</h3>
     {% if day_data.bookings %}
       <ul>
         {% for booking in day_data.bookings %}
           <li>
             {{ booking.time|time:"H:i" }} - {{ booking.customer.name|default:"Anonymous" }} ({{ booking.guests }} guests)
-            <!-- Link to manage (update/cancel) the booking -->
-            <a href="{% url 'manage_booking' booking.id %}">Manage</a>
+            <a href="{% url 'manage_booking' booking.id %}" style="color: #f8f8f8; font-weight: bold;">Manage</a>
           </li>
         {% endfor %}
       </ul>

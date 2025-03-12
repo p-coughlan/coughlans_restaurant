@@ -1,0 +1,61 @@
+/* static/css/calendar.css */
+
+/* Calendar container styling */
+.calendar-container {
+    background: #2e4b2e; /* Dark olive green background */
+    color: #f8f8f8;      /* Off-white text */
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: sans-serif;
+}
+
+/* Headings styling */
+.calendar-container h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.calendar-container p {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.calendar-container h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+/* Table styling for monthly view (if needed) */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.calendar-table th, .calendar-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.calendar-table th {
+    background-color: #3a5a3a;
+}
+
+/* Navigation links */
+.calendar-nav {
+    text-align: center;
+    margin-top: 20px;
+}
+.calendar-nav a {
+    margin: 0 10px;
+    color: #f8f8f8;
+    text-decoration: none;
+}
+.calendar-nav a:hover {
+    text-decoration: underline;
+}
