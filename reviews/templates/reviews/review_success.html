@@ -1,0 +1,11 @@
+{% extends "bookings/base.html" %}
+
+{% block title %}Review Submitted{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Review Submitted!</h1>
+  <p>Thank you for submitting your review. Your feedback is important to us and will appear on the site once approved.</p>
+  <a href="{% url 'home' %}" class="btn btn-primary">Return Home</a>
+</div>
+{% endblock %}

@@ -25,3 +25,10 @@ def review_ticker(request):
     """
     reviews = Review.objects.filter(approved=True).order_by('-created_at')
     return render(request, 'reviews/review_ticker.html', {'reviews': reviews})
+
+def review_success(request):
+    """
+    Displays a confirmation page after a review is submitted.
+    """
+    return render(request, 'reviews/review_success.html')
+
