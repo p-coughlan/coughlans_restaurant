@@ -6,18 +6,20 @@ from .models import Review
 
 def submit_review(request):
     """
-    Allows users to submit a review using the revised ReviewForm.
-    The review is saved (pending admin approval) and a success message is displayed and the user is redirected to the home page.
+    Allows users to submit a review.
+    Reviews will be pending approval until an admin approves them.
     """
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Thank you for your review! It will appear once approved.")
-            return redirect('home')
+            return redirect('review_success')
+        else:
+            print("Form errors:", form.errors)  # Debug: Print form errors
     else:
         form = ReviewForm()
     return render(request, 'reviews/submit_review.html', {'form': form})
+
 
 def review_ticker(request):
     """
@@ -30,5 +32,7 @@ def review_success(request):
     """
     Displays a confirmation page after a review is submitted.
     """
+    print("Review success view reached!")  # Debug: Print message to console
     return render(request, 'reviews/review_success.html')
+
 
