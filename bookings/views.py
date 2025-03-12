@@ -8,7 +8,8 @@ from datetime import date, datetime, timedelta, time
 from reviews.models import Review
 from collections import OrderedDict
 from django.contrib.admin.views.decorators import staff_member_required 
-from django.views.generic import TemplateView 
+from django.views.generic import TemplateView
+import calendar
 
 
 # GROUP FUNCTIONS BY RELATED TASKS
@@ -259,6 +260,59 @@ def weekly_calendar(request):
     }
     return render(request, 'bookings/weekly_calendar.html', context)
 
+@staff_member_required
+def daily_calendar(request):
+    """
+    Displays a daily view of bookings. Default is today’s bookings.
+    """
+    day = request.GET.get('day')
+    if day:
+        try:
+            day = datetime.strptime(day, "%Y-%m-%d").date()
+        except ValueError:
+            day = date.today()
+    else:
+        day = date.today()
+    
+    bookings = Booking.objects.filter(date=day).order_by('time')
+    context = {
+        'day': day,
+        'bookings': bookings,
+    }
+    return render(request, 'bookings/daily_calendar.html', context)
+
+@staff_member_required
+def monthly_calendar(request):
+    """
+    Displays a monthly view of bookings for the current month.
+    """
+    today = date.today()
+    month = request.GET.get('month', today.month)
+    year = request.GET.get('year', today.year)
+    
+    try:
+        month = int(month)
+        year = int(year)
+    except ValueError:
+        month = today.month
+        year = today.year
+
+    # Get number of days in the month
+    _, num_days = calendar.monthrange(year, month)
+    
+    # Build a list of day objects with their bookings
+    days = []
+    for day in range(1, num_days + 1):
+        current_date = date(year, month, day)
+        bookings = Booking.objects.filter(date=current_date).order_by('time')
+        days.append({'date': current_date, 'bookings': bookings})
+    
+    context = {
+        'year': year,
+        'month': month,
+        'days': days,
+    }
+    return render(request, 'bookings/monthly_calendar.html', context)
 # -----------------------------------------------------------------------------
 # Lunch and Dinner Menus
 
