@@ -2,28 +2,31 @@
 <!-- This template loops through the passed-in reviews and creates a container for each review. The JavaScript (in review_ticker.js) will handle showing and hiding these items. -->
 <!-- reviews/templates/reviews/review_ticker.html -->
 <style>
-    /* Style for the review ticker container */
-    .review-ticker {
-        height: auto; 
-        /* overflow: hidden; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-family: 'Playfair Display', serif;
-        color: #ffcc76; /* Light gold */
-        padding: 20px;
-        font-size: 1.1rem;
-    }
-    /* Ensure all review items are initially hidden */
-    .review-item {
-        display: none;
-    }
-    /* Show the first review item */
-    .review-item:first-child {
-        display: block;
-    }
-  </style>
+  /* Style for the review ticker container */
+  .review-ticker {
+      height: 120px; 
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: #ffcc76; /* Light gold */
+      padding: 20px;
+      font-size: 1.1rem;
+      position: relative; /* Ensure it stays in place */
+  }
+  /* Ensure all review items are initially hidden */
+  .review-item {
+      display: none;
+      width: 100%; /* Ensure the review items take up the full width of the container */
+      white-space: normal; /* Allow text to wrap */
+  }
+  /* Show the first review item */
+  .review-item:first-child {
+      display: block;
+  }
+</style>
   
   <div id="review-ticker" class="review-ticker">
     {% for review in reviews %}
