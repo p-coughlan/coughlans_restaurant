@@ -9,12 +9,12 @@ class ReviewForm(forms.ModelForm):
     This form collects the review's comment and a rating using a star-based input.
     Additional customer details are optional and used to link the review to a Customer.
     """
-    customer_name = forms.CharField(max_length=100, label="Your Name", required=False,
-                                    help_text="Optional. Enter your name.")
+    customer_name = forms.CharField(max_length=100, label="Your Full Name", required=False,
+                                    help_text="")
     customer_email = forms.EmailField(label="Your Email", required=False,
-                                      help_text="Optional. Enter your email address.")
-    customer_phone = forms.CharField(max_length=15, label="Your Phone", required=False,
-                                     help_text="Optional. Enter your phone number.")
+                                      help_text="")
+    customer_phone = forms.CharField(max_length=15, label="Your Phone Number", required=False,
+                                     help_text="")
     
     class Meta:
         model = Review
@@ -22,13 +22,13 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'comment': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
             'rating': forms.RadioSelect(
-                choices=[(i, str(i)) for i in range(1, 6)],
+                choices=[(i, str(i)) for i in range(1, 6)], #how to not dispaly the numbers - use a star image instead - 
                 attrs={'class': 'radiolist rating'}  # Add both classes
             ),
         }
         help_texts = {
             'comment': "Write your review here.",
-            'rating': "Select a rating from 1 (lowest) to 5 (highest).",
+            'rating': "",
         }
     
     def __init__(self, *args, **kwargs):

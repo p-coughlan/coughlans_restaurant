@@ -1,5 +1,5 @@
 # bookings/forms.py
-
+from datetime import time
 from django import forms
 from .models import Booking, Customer
 

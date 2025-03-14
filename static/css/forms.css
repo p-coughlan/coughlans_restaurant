@@ -6,7 +6,7 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 500px;
   margin: 40px auto;  /* Center horizontally with vertical spacing */
 }
 
@@ -47,7 +47,7 @@
 
 /* Style for the submit button */
 button[type="submit"] {
-  background-color: #556B2F;  /* Olive green */
+  background-color: #2e4b2e; /* Dark green */
   color: white;
   border: none;
   border-radius: 50px;
@@ -57,6 +57,8 @@ button[type="submit"] {
   width: 100%;       /* Full width of container */
   cursor: pointer;
   text-align: center; /* Ensure button text is centered */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Custom styling for fields in the manage booking form */
@@ -105,8 +107,8 @@ textarea {
 .radiolist.rating {
   display: flex;
   justify-content: space-around;
-  direction: rtl;               /* Reverse visual order */
-  unicode-bidi: bidi-override;   /* Ensure proper reversal */
+  /* direction: rtl;               /* Reverse visual order */
+  /* unicode-bidi: bidi-override;   /* Ensure proper reversal */
   font-size: 2rem;              /* Adjust star size */
   list-style: none;
   padding: 0;
