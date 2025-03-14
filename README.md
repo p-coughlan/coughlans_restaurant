@@ -1,5 +1,7 @@
 # Coughlan's Restuarant - Project Overview
 
+<img src="assets/images/home.jpg" alt="homepage" width="1000">
+
 **Coughlan's Restaurant** is a web application for a fictional restaurant that enables users to make and manage table bookings, submit reviews, and view current menus. The application is built using **Django**, **Python**, and **PostgreSQL**, with a responsive front-end styled using **Bootstrap** and custom CSS.
 
 ## Features
@@ -88,13 +90,23 @@
   - Click on **"Make a Booking"** from the Bookings dropdown in the navigation.
   - Fill in your personal details (name, email, phone) and select the date, time, and number of guests.
   - Submit the form to receive a custom confirmation page with your booking details.
-  - *Screenshot: (Include an image of the booking form and confirmation page here.)*
+
+<img src="assets/images/booking.jpg" alt="booking" width="800">
+
+ - **Manage a Booking**  
+  - Click on **"Manage Booking"** from the Bookings dropdown in the navigation.
+  - Enter email associated with the booking
+  - Submit the form to check for bookings made with that email.
+  - Modify or Cancel existing booking.
+
+<img src="assets/images/manage.jpg" alt="manage" width="800">
 
 - **Leave a Review:**  
   - Navigate to the **"Leave a Review"** page.
   - Submit your feedback using the star-based rating system and text field for your comment.
   - Your review will be pending approval before it appears on the homepage.
-  - *Screenshot: (Include an image of the review submission page here.)*
+
+<img src="assets/images/review.jpg" alt="review" width="800">
 
 ### For Staff / Admin
 - **Admin Login:**  
@@ -106,7 +118,8 @@
     Use navigation links to switch to Weekly or Monthly views.
   - In any calendar view, click the **"Manage"** link next to a booking to update or cancel it.
   - You can also search for a booking using the email-based lookup function.
-  - *Screenshot: (Include an image of the daily/weekly/monthly calendar views here.)*
+
+<img src="assets/images/calendar.jpg" alt="calendar" width="800">
 
 ## Testing
 
@@ -209,7 +222,7 @@ Coughlan's Restaurant features a clean, elegant, and responsive design that rein
 
 Below is the ERD that represents the main data relationships in the application:
 
-![ERD Diagram](assets/images/erd.jpg)
+<img src="assets/images/erd.jpg" alt="erd" width="600">
 
 ### Explanation
 
@@ -319,3 +332,6 @@ Mailing List
 
 Calendar
 - Some extra styling here to bring in line with the site theme but still mainting functionality (key)
+
+Menus
+- Currently just a basic placeholder - add and style content
