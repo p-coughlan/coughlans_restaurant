@@ -1,6 +1,7 @@
 # Coughlan's Restuarant - Project Overview
 
 <img src="assets/images/home.jpg" alt="homepage" width="1000">
+<p style="font-size: 12px">Hero Image Source: <a href="https://media.timeout.com/images/106030453/1536/864/image.webp">The Drapers Arms, Islington as featured in Time Out magazine</a></p>
 
 **Coughlan's Restaurant** is a web application for a fictional restaurant that enables users to make and manage table bookings, submit reviews, and view current menus. The application is built using **Django**, **Python**, and **PostgreSQL**, with a responsive front-end styled using **Bootstrap** and custom CSS.
 
@@ -209,13 +210,15 @@ The project has been manually tested to ensure key functionalities work as expec
 
 Coughlan's Restaurant features a clean, elegant, and responsive design that reinforces a traditional yet modern dining experience. Key design elements include:
 
-- **Minimal Bootstrap Theme**
+- **Layout with Minimal Bootstrap Theme**
 
   This project builds upon the [Bootstrap Starter Template](https://getbootstrap.com/docs/4.5/examples/starter-template/), a minimal and responsive foundation provided by Bootstrap.
 
   <img src="assets/images/bootstrap.jpg" alt="bootstrap" width="400">
 
   The Bootstrap Starter Template offers a lightweight, clean base that makes it easy to customize and integrate with custom CSS. Its minimal design ensures that the focus remains on the project's unique visual elements while maintaining fast load times and responsive behavior across all devices. This approach has allowed us to implement our custom styling and functionality (such as the booking forms and calendar views) while preserving the robust, mobile-first features of Bootstrap.
+
+  The homepage uses a full-width hero image with a dark overlay, ensuring that the key call-to-action elements are clear and engaging. Consistent spacing and alignment across pages create a unified user experience.
 
 - **Color Scheme:**  
   A simple refined palette using a Dark Olive (#2e4b2e) for the header and footer and a Light Gold (#ffcc76) for the brand (homepage link) and navigation.
@@ -227,20 +230,12 @@ Coughlan's Restaurant features a clean, elegant, and responsive design that rein
 - **Typography:**  
   Headings are styled with **Playfair Display** to evoke a classic, upscale feel, while body text uses **Roboto** for clarity and modernity.
 
-  [Playfair Display](https://fonts.google.com/specimen/Playfair+Display/about)
+  [About Playfair Display](https://fonts.google.com/specimen/Playfair+Display/about)
 
-  [Roboto] https://fonts.google.com/specimen/Roboto/about?query=Roboto
-
-- **Imagery and Layout:**  
-  Mention Bootstrap here
-
-  The homepage uses a full-width hero image with a dark overlay, ensuring that the key call-to-action elements are clear and engaging. Consistent spacing and alignment across pages create a unified user experience.
+  [About Roboto](https://fonts.google.com/specimen/Roboto/about?query=Roboto)
 
 - **Interactive Elements:**  
   Custom components, such as the star rating system for reviews and dynamic calendar views for booking management, have been designed to be both visually appealing and user-friendly.
-
-*Include screenshots or design mockups as necessary to illustrate these elements.*
-
 
 ## Design Considerations
 
@@ -258,14 +253,12 @@ Coughlan's Restaurant features a clean, elegant, and responsive design that rein
   
 - **Deployment & Configuration:**  
   - Deployed on Heroku using a cloud-based PostgreSQL database, ensuring ease of scaling and secure management of environment variables.
-  
-*Future improvements include integrating user accounts and further enhancing the interactive elements of the star rating system.*
 
 ## Entity Relationship Diagram (ERD)
 
 Below is the ERD that represents the main data relationships in the application:
 
-<img src="assets/images/erd.jpg" alt="erd" width="600">
+<img src="assets/images/ERD.jpg" alt="erd" width="600">
 
 ### Explanation
 
@@ -352,11 +345,12 @@ This ERD illustrates how the **Customer** model serves as the central point, con
   Used for image editing and creating visual assets for the project.  
   [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 
-- **Hero Image Source:**  
-  Used as the image in the homepage background
-  [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
-
-*Additional credits and resources may be added as the project evolves.*
+- **Hero Image Source:**
+  [The Drapers Arms, London](https://www.thedrapersarms.com/)
+  Used as the main hero image, central to the design. From a Time Out article.
+  I should credit the photographer here (sorry!) I will endeavour to rectify this.
+  The pub looks gorgeous, must visit one day!
+  (https://media.timeout.com/images/106030453/1536/864/image.webp)
 
 ## License
 
@@ -366,6 +360,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 I would like to extend my sincere thanks to everyone who supported me throughout this project:
 
-- **My Tutor at WAES, Komal Karir:** For invaluable guidance and encouragement.
+- **My Tutor at WAES, Komal Karir:** For excellent tutorage, invaluable guidance and encouragement.
 - **My Code Institite Mentor, Spencer Barribal:** For your insights and support.
 - **My Fellow L5 Web Application Development Students:** For your collaboration and feedback.
