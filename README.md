@@ -4,6 +4,26 @@
 
 **Coughlan's Restaurant** is a web application for a fictional restaurant that enables users to make and manage table bookings, submit reviews, and view current menus. The application is built using **Django**, **Python**, and **PostgreSQL**, with a responsive front-end styled using **Bootstrap** and custom CSS.
 
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Design and Development Tools](#design-and-development-tools)
+- [Setup and Installation](#setup-and-installation)
+- [Usage Instructions](#usage-instructions)
+  - [For Customers](#for-customers)
+  - [For Staff--Admin](#for-staff--admin)
+- [Testing](#testing)
+- [Testing Table](#testing-table)
+- [User Stories](#user-stories)
+- [Visual Design](#visual-design)
+- [Design Considerations](#design-considerations)
+- [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+- [Essential Future Improvements](#essential-future-improvements)
+- [Other Future Improvements](#other-future-improvements)
+- [References and Credits](#references-and-credits)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+
 ## Features
 
 - **Booking System:**
@@ -46,6 +66,9 @@
 [![VS Code](https://img.shields.io/badge/VS%20Code-blue?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)  
 [![Heroku](https://img.shields.io/badge/Heroku-purple?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com/)  
 [![Adobe Photoshop](https://img.shields.io/badge/Adobe%20Photoshop-blue?style=for-the-badge&logo=adobe-photoshop&logoColor=white)](https://www.adobe.com/products/photoshop.html)
+[![Font Awesome](https://img.shields.io/badge/Font%20Awesome-%20?style=for-the-badge&logo=fontawesome&logoColor=white)](https://fontawesome.com/)  
+[![Google Fonts](https://img.shields.io/badge/Google%20Fonts-%20?style=for-the-badge&logo=google-fonts&logoColor=white)](https://fonts.google.com/)
+
 
 ## Setup and Installation
 
@@ -184,13 +207,31 @@ The project has been manually tested to ensure key functionalities work as expec
 
 Coughlan's Restaurant features a clean, elegant, and responsive design that reinforces a traditional yet modern dining experience. Key design elements include:
 
+- **Minimal Bootstrap Theme**
+
+  This project builds upon the [Bootstrap Starter Template](https://getbootstrap.com/docs/4.5/examples/starter-template/), a minimal and responsive foundation provided by Bootstrap.
+
+  <img src="assets/images/bootstrap.jpg" alt="bootstrap" width="400">
+
+  The Bootstrap Starter Template offers a lightweight, clean base that makes it easy to customize and integrate with custom CSS. Its minimal design ensures that the focus remains on the project's unique visual elements while maintaining fast load times and responsive behavior across all devices. This approach has allowed us to implement our custom styling and functionality (such as the booking forms and calendar views) while preserving the robust, mobile-first features of Bootstrap.
+
 - **Color Scheme:**  
-  A refined palette featuring a dark olive (#2e4b2e) for calendar views and a semi-transparent white for form containers, paired with off-white text. This high-contrast combination ensures readability and visual impact.
+  A simple refined palette using a Dark Olive (#2e4b2e) for the header and footer and a Light Gold (#ffcc76) for the brand (homepage link) and navigation.
+
+  This high-contrast combination ensures readability and visual impact.
+
+  <img src="assets/images/palette.jpg" alt="palette" width="400">
 
 - **Typography:**  
   Headings are styled with **Playfair Display** to evoke a classic, upscale feel, while body text uses **Roboto** for clarity and modernity.
 
+  [Playfair Display](https://fonts.google.com/specimen/Playfair+Display/about)
+
+  [Roboto] https://fonts.google.com/specimen/Roboto/about?query=Roboto
+
 - **Imagery and Layout:**  
+  Mention Bootstrap here
+
   The homepage uses a full-width hero image with a dark overlay, ensuring that the key call-to-action elements are clear and engaging. Consistent spacing and alignment across pages create a unified user experience.
 
 - **Interactive Elements:**  
@@ -240,10 +281,29 @@ Below is the ERD that represents the main data relationships in the application:
 
 This ERD illustrates how the **Customer** model serves as the central point, connecting the **Booking** and **Review** functionalities to maintain data consistency and avoid duplication.
 
-## Future Improvements
+## Essential Future Improvements
 
-- **Enhanced Star Rating Interface:**  
-  Refine the current star rating system with interactive animations and improved styling to make selection more intuitive.
+- **Booking Form:**  
+  - Enable user to pick date and time from a 'calendar widget' or similar for improved user experience.
+  - Use placeholder text for empty fields.
+  - Style user input fields to minimize empty space.
+
+- **Review Form:**
+  Review stars not working as anticipated. All stars should be 'checked' by default. Currently only number 5 is. If a user selects a rating of 4 then 4 stars should be checked and so on, rather than the individual number. This could potentially be done by JavaScript.
+
+- **All Forms:**
+  A close button (cross) in corner so that the user can close the form. Currently the user has to click on home (Coughlan's) to navigate away from the form.
+
+- **Menus:**
+  Currently just a basic placeholder - add and style content.
+
+## Other Future Improvements
+  
+- **Admin Calendar Views:**  
+  Some extra styling here to bring in line with the site theme but still mainting functionality (key)
+
+- **Mailing List**  
+  A link on the site to sign up to a mailing list - a checkbox could also be included in the review form for this
 
 - **User Account Management:**  
   Enable customers to create and manage accounts, view their booking history, and easily submit or update reviews.
@@ -290,6 +350,10 @@ This ERD illustrates how the **Customer** model serves as the central point, con
   Used for image editing and creating visual assets for the project.  
   [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 
+- **Hero Image Source:**  
+  Used as the image in the homepage background
+  [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
+
 *Additional credits and resources may be added as the project evolves.*
 
 ## License
@@ -303,35 +367,3 @@ I would like to extend my sincere thanks to everyone who supported me throughout
 - **My Tutor at WAES, Komal Karir:** For invaluable guidance and encouragement.
 - **My Code Institite Mentor, Spencer Barribal:** For your insights and support.
 - **My Fellow L5 Web Application Development Students:** For your collaboration and feedback.
-
-
-Notes: 
-Images / screenshots to include
-- booking form and confirmation page
-- review form and success pages
-- daily/weekly/monthly calendar views
-
-- am I repsonsive
-
-Improvements:
-Booking Form
-- pick date and time from calendar widget
-- Placeholder text for empty fields
-- style input boxes so not so much empty space
-- Refactor booking logic as currently able to make a booking of 0
-- Refactor booking logic as currently able to book a table outside of restaurant hours
-
-Review Form:
-- Review stars not working as anticipated. All stars should be 'checked' by default. Currently only number 5 is. If a user selects a rating of 4 then 4 stars should be checked and so on, rather than the individual number. This could potentially be done by JavaScript.
-
-ALL FORMS
-- A close button (cross) in corner so that the user can close the form. Currently the user has to click on home (Coughlan's) to navigate away from the form
-
-Mailing List
-- A link on the site to sign up to a mailing list - a checkbox could also be included in the review form for this
-
-Calendar
-- Some extra styling here to bring in line with the site theme but still mainting functionality (key)
-
-Menus
-- Currently just a basic placeholder - add and style content
