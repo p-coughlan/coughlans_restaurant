@@ -69,7 +69,7 @@
 [![Adobe Photoshop](https://img.shields.io/badge/Adobe%20Photoshop-blue?style=for-the-badge&logo=adobe-photoshop&logoColor=white)](https://www.adobe.com/products/photoshop.html)
 [![Font Awesome](https://img.shields.io/badge/Font%20Awesome-%20?style=for-the-badge&logo=fontawesome&logoColor=white)](https://fontawesome.com/)  
 [![Google Fonts](https://img.shields.io/badge/Google%20Fonts-%20?style=for-the-badge&logo=google-fonts&logoColor=white)](https://fonts.google.com/)
-
+[![Favicon Generator](https://img.shields.io/badge/Favicon%20Generator-RedKetchup-red?style=for-the-badge)](https://redketchup.io/favicon-generator)
 
 ## Setup and Installation
 
@@ -345,9 +345,13 @@ This ERD illustrates how the **Customer** model serves as the central point, con
   Used for image editing and creating visual assets for the project.  
   [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 
-- **Hero Image Source:**
-  [The Drapers Arms, London](https://www.thedrapersarms.com/)
-  Used as the main hero image, central to the design. From a Time Out article.
+- **Red Ketchup Online Tools:**  
+  Used for generating Favicons and manifest for use on a variety of platforms.  
+  [Red Ketchup](https://redketchup.io/)
+
+- **Hero Image Source:**  
+  [The Drapers Arms, London](https://www.thedrapersarms.com/)  
+  Used as the main hero image, central to the design. From a Time Out article.  
   I should credit the photographer here (sorry!) I will endeavour to rectify this.
   The pub looks gorgeous, must visit one day!
   (https://media.timeout.com/images/106030453/1536/864/image.webp)
