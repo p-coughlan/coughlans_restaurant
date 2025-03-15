@@ -243,6 +243,11 @@ Coughlan's Restaurant features a clean, elegant, and responsive design that rein
 - **Interactive Elements:**  
   Custom components, such as the star rating system for reviews and dynamic calendar views for booking management, have been designed to be both visually appealing and user-friendly.
 
+  - **Favicon:**  
+  A custom favicon was created using the [RedKetchup Favicon Generator](https://redketchup.io/favicon-generator) to ensure consistent branding across all devices and browsers. This small but essential design element not only enhances the project's professional appearance in browser tabs and bookmarks, but also reinforces Coughlan's Restaurant's visual identity as part of the overall design strategy.  
+
+    <img src="assets/images/favicon.png" alt="favicon" width="150">
+
 ## Design Considerations
 
 - **Framework & Architecture:**  
