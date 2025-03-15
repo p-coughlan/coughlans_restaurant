@@ -1,11 +1,13 @@
 # Coughlan's Restuarant - Project Overview
 
 <img src="assets/images/home.jpg" alt="homepage" width="1000">
-<p style="font-size: 12px">Hero Image Source: <a href="https://media.timeout.com/images/106030453/1536/864/image.webp">The Drapers Arms, Islington as featured in Time Out magazine</a></p>
+<p style="font-size: 10px">Hero Image Source: <a href="https://media.timeout.com/images/106030453/1536/864/image.webp">The Drapers Arms, Islington as featured in Time Out magazine</a></p>
 
 **Coughlan's Restaurant** is a web application for a fictional restaurant that enables users to make and manage table bookings, submit reviews, and view current menus. The application is built using **Django**, **Python**, and **PostgreSQL**, with a responsive front-end styled using **Bootstrap** and custom CSS.
 
 Currently, the booking system relies solely on email for verification, meaning that bookings can be created or managed without any additional authentication—leaving it open to potential misuse. Despite this, the project effectively demonstrates full CRUD functionality for managing reservations, reviews, and menu information. The mechanics of the application allow users to create, retrieve, update, and delete data. Future improvements will focus on implementing a more robust verification process (such as sending an activation link via email or SMS) to ensure that only authorized users can access and modify their reservations. Please see [Essential Future Improvements](#essential-future-improvements)
+
+[View Site Here](https://coughlans-c39077adf5df.herokuapp.com/)
 
 
 
