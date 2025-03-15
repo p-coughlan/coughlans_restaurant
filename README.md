@@ -5,7 +5,7 @@
 
 **Coughlan's Restaurant** is a web application for a fictional restaurant that enables users to make and manage table bookings, submit reviews, and view current menus. The application is built using **Django**, **Python**, and **PostgreSQL**, with a responsive front-end styled using **Bootstrap** and custom CSS.
 
-Currently, the booking system relies solely on email for verification, meaning that bookings can be created or managed without any additional authentication—leaving it open to potential misuse. Despite this, the project effectively demonstrates full CRUD functionality for managing reservations, reviews, and menu information. The mechanics of the application allow users to create, retrieve, update, and delete data. Future improvements will focus on implementing a more robust verification process (such as sending an activation link via email or SMS) to ensure that only authorized users can access and modify their reservations.
+Currently, the booking system relies solely on email for verification, meaning that bookings can be created or managed without any additional authentication—leaving it open to potential misuse. Despite this, the project effectively demonstrates full CRUD functionality for managing reservations, reviews, and menu information. The mechanics of the application allow users to create, retrieve, update, and delete data. Future improvements will focus on implementing a more robust verification process (such as sending an activation link via email or SMS) to ensure that only authorized users can access and modify their reservations. Please see [Essential Future Improvements](#essential-future-improvements)
 
 
 
@@ -282,6 +282,9 @@ This ERD illustrates how the **Customer** model serves as the central point, con
 
 ## Essential Future Improvements
 
+- **Booking Functionality:**  
+  - Implement a more robust verification process (such as sending an activation link via email or SMS) to ensure that only authorized users can access and modify their reservations.
+
 - **Booking Form:**  
   - Enable user to pick date and time from a 'calendar widget' or similar for improved user experience.
   - Use placeholder text for empty fields.
@@ -356,9 +359,9 @@ This ERD illustrates how the **Customer** model serves as the central point, con
 - **Hero Image Source:**  
   [The Drapers Arms, London](https://www.thedrapersarms.com/)  
   Used as the main hero image, central to the design. From a Time Out article.  
-  I should credit the photographer here (sorry!) I will endeavour to rectify this.
-  The pub looks gorgeous, must visit one day!
-  (https://media.timeout.com/images/106030453/1536/864/image.webp)
+  I should credit the photographer here (sorry!) I will endeavour to rectify this.  
+  The pub looks gorgeous, must visit one day!  
+  [Hero Image Link Source](https://media.timeout.com/images/106030453/1536/864/image.webp)
 
 ## License
 
@@ -366,7 +369,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-I would like to extend my sincere thanks to everyone who supported me throughout this project:
+I would like to extend my sincere thanks to:
 
 - **My Tutor at WAES, Komal Karir:** For excellent tutorage, invaluable guidance and encouragement.
 - **My Code Institite Mentor, Spencer Barribal:** For your insights and support.
