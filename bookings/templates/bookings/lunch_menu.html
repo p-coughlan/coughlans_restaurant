@@ -1,13 +1,125 @@
-<!-- bookings/templates/bookings/lunch_menu.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lunch Menu</title>
-</head>
-<body>
-    <h1>Lunch Menu</h1>
-    <p>This is a placeholder for the Lunch Menu. Update with your menu items as needed.</p>
-    <a href="{% url 'home' %}">Back to Home</a>
-</body>
-</html>
+{% extends "bookings/base.html" %}
+
+{% block title %}{{ menu_title }}Lunch Menu - Coughlan's{% endblock %}
+
+{% block extra_css %}
+<style>
+  .menu-card {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    max-width: 800px;      /* limit width */
+    margin: 2rem auto;     /* center and vertical spacing */
+  }
+
+  .menu-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.75rem;
+    color: #ffcc76;        /* light-gold */
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .menu-section {
+    margin-bottom: 2.5rem;
+  }
+  .menu-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #ffcc76;        /* light-gold */
+    margin-bottom: 1rem;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: .75rem;
+  }
+  .menu-item .name {
+    font-weight: bold;
+    color: #f8f8f8;
+  }
+  .menu-item .price {
+    font-style: italic;
+    color: #ddd;
+  }
+
+  @media (max-width: 576px) {
+    .menu-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .menu-item .price {
+      margin-top: .25rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="menu-card">
+  <h1>{{ menu_title }}Coughlan's Lunch Menu</h1>
+
+  <div class="menu-section">
+    <h2>Starters</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Starter 1</span><span class="price">£5.50</span></div>
+        <div class="menu-item"><span class="name">Starter 2</span><span class="price">£6.00</span></div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Starter 3</span><span class="price">£5.75</span></div>
+        <div class="menu-item"><span class="name">Starter 4</span><span class="price">£6.25</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2>Main Courses</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Main 1</span><span class="price">£12.50</span></div>
+        <div class="menu-item"><span class="name">Main 2</span><span class="price">£13.00</span></div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Main 3</span><span class="price">£11.75</span></div>
+        <div class="menu-item"><span class="name">Main 4</span><span class="price">£14.25</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2>Desserts</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Dessert 1</span><span class="price">£5.00</span></div>
+        <div class="menu-item"><span class="name">Dessert 2</span><span class="price">£5.50</span></div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Dessert 3</span><span class="price">£6.00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2>Sides</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Side 1</span><span class="price">£3.00</span></div>
+        <div class="menu-item"><span class="name">Side 2</span><span class="price">£3.50</span></div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item"><span class="name">Side 3</span><span class="price">£2.75</span></div>
+        <div class="menu-item"><span class="name">Side 4</span><span class="price">£3.25</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Home button -->
+  <div class="text-center mt-4">
+    <a href="{% url 'home' %}" class="btn btn-outline-light">Back Home</a>
+  </div>
+</div>
+{% endblock %}
